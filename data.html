@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Data Pesanan – Sajodo Snack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+:root{
+  --red:#c0392b;--red2:#96281b;--orange:#f39c12;
+  --bg:#fff7f0;--bg2:#fff1e6;--dark:#2c1810;--muted:#7a5c4e;
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'Nunito','Segoe UI',sans-serif;
+}
+body{font-family:var(--fb);background:var(--bg);color:var(--dark)}
+.fd{font-family:var(--fd)!important}
+.text-red{color:var(--red)!important}
+.bg-red{background-color:var(--red)!important}
+.bg-red2{background-color:var(--red2)!important}
+.bg-cream{background-color:var(--bg)!important}
+.bg-cream2{background-color:var(--bg2)!important}
+.border-red{border-color:var(--red)!important}
+
+/* NAVBAR */
+.navbar{background:rgba(255,247,240,.97)!important;backdrop-filter:blur(10px);border-bottom:2px solid rgba(192,57,43,.12);box-shadow:0 2px 16px rgba(192,57,43,.08)}
+.navbar-brand{font-family:var(--fd);font-size:1.3rem;font-weight:900;color:var(--dark)!important}
+.navbar-brand .acc{color:var(--red)}
+.nav-link{font-weight:700;font-size:.9rem;color:var(--dark)!important;transition:color .2s}
+.nav-link:hover,.nav-link.active{color:var(--red)!important}
+.btn-order{background:var(--red);color:#fff!important;border-radius:50px;padding:7px 20px!important;font-weight:700}
+.btn-order:hover{background:var(--red2)!important}
+.logo-icon{width:34px;height:34px;background:var(--red);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem}
+
+/* BUTTONS */
+.btn-sajodo{background:var(--red);color:#fff;border:none;border-radius:50px;font-weight:800;padding:11px 26px;transition:all .25s;box-shadow:0 4px 16px rgba(192,57,43,.3)}
+.btn-sajodo:hover{background:var(--red2);color:#fff;transform:translateY(-2px);box-shadow:0 8px 26px rgba(192,57,43,.4)}
+.btn-sajodo-o{background:transparent;color:var(--red);border:2.5px solid var(--red);border-radius:50px;font-weight:800;padding:10px 24px;transition:all .25s}
+.btn-sajodo-o:hover{background:var(--red);color:#fff}
+.btn-sajodo-w{background:#fff;color:var(--red);border-radius:50px;font-weight:800;padding:11px 26px;transition:all .25s;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.btn-sajodo-w:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,0,0,.2)}
+.btn-sajodo-sm{padding:7px 18px;font-size:.84rem}
+
+/* SECTION TAG */
+.sec-tag{display:inline-block;background:rgba(192,57,43,.1);color:var(--red);padding:4px 14px;border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:8px}
+
+/* CARDS */
+.p-card{border:2px solid transparent;transition:all .3s;border-radius:16px!important}
+.p-card:hover{border-color:var(--red)!important;transform:translateY(-5px);box-shadow:0 16px 44px rgba(192,57,43,.18)!important}
+.p-card .card-img-top{height:200px;object-fit:cover}
+.p-card .img-placeholder{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,#fff0e0,#ffd8b3)}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,var(--red),var(--red2));padding:110px 0 56px;color:#fff}
+.page-hero h1{font-family:var(--fd);font-size:2.5rem;font-weight:900}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--red),var(--red2));border-radius:24px;padding:52px 40px;color:#fff;position:relative;overflow:hidden}
+.cta-box::before{content:'🌶️';position:absolute;font-size:6rem;top:-10px;right:40px;opacity:.14;pointer-events:none}
+
+/* TABLE */
+.tbl-head{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff}
+.tbl-head th{color:#fff!important;font-weight:700;font-size:.88rem;padding:13px 16px}
+tbody td{padding:12px 16px;vertical-align:middle;font-size:.9rem}
+tbody tr:hover{background:var(--bg)!important}
+.badge-baru{background:rgba(52,152,219,.15);color:#1a5276}
+.badge-diproses{background:rgba(243,156,18,.15);color:#c87f00}
+.badge-selesai{background:rgba(39,174,96,.15);color:#1e8449}
+
+/* FOOTER */
+.footer{background:var(--dark);color:rgba(255,255,255,.8)}
+
+/* MISC */
+.price-tag{color:var(--red);font-weight:800}
+.spicy{font-size:.78rem}
+.price-table th{background:rgba(192,57,43,.08);color:var(--red);font-size:.78rem;font-weight:700}
+.price-table td:last-child{color:var(--red);font-weight:700}
+.hero-img-box{height:340px;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(192,57,43,.3);position:relative}
+.hero-img-box img{width:100%;height:100%;object-fit:cover}
+.hero-img-box .emoji-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:7rem;background:linear-gradient(135deg,#ffd5b8,#ffb889)}
+.toast-notif{position:fixed;bottom:28px;right:28px;background:var(--red);color:#fff;padding:14px 22px;border-radius:12px;font-weight:700;box-shadow:0 8px 24px rgba(192,57,43,.3);transform:translateY(100px);opacity:0;transition:all .4s;z-index:9999;font-size:.92rem}
+.toast-notif.show{transform:translateY(0);opacity:1}
+
+@media(max-width:576px){
+  .page-hero h1{font-size:1.8rem}
+  .cta-box{padding:36px 24px}
+}
+</style>
+
+<style>
+.stat-card{border-radius:14px!important;border-left:4px solid var(--red)!important;transition:all .3s}
+.stat-card:hover{transform:translateY(-3px)}
+.stat-num{font-family:var(--fd);font-size:2rem;font-weight:900;color:var(--red)}
+.tbl-wrapper{border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(192,57,43,.08)}
+.search-wrap{border:2px solid #ead5c8;border-radius:50px;padding:6px 18px;display:flex;align-items:center;gap:8px;background:#fff}
+.search-wrap input{border:none;outline:none;background:transparent;font-size:.9rem;width:220px}
+.status-baru{background:rgba(52,152,219,.12);color:#1a5276;padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:700}
+.status-diproses{background:rgba(243,156,18,.15);color:#c87f00;padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:700}
+.status-selesai{background:rgba(39,174,96,.15);color:#1e8449;padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:700}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="images/logo.png" alt="Sajodo Snack Logo" style="width:36px;height:36px;border-radius:50%;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+      <span class="logo-icon" style="display:none">🌶️</span>
+      SAJODO <span class="acc ms-1">SNACK</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+<li class="nav-item ms-lg-2"><a class="btn-order nav-link" href="order.html">Pesan</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+<li class="nav-item"><a class="nav-link" href="promo.html">Promo 🔥</a></li>
+</ul>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero"><div class="container">
+  <nav aria-label="breadcrumb"><ol class="breadcrumb mb-3" style="font-size:.85rem;opacity:.75"><li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li><li class="breadcrumb-item active text-white">Data Pesanan</li></ol></nav>
+  <h1>📊 Data Pesanan</h1><p style="opacity:.88">Input dan kelola data pesanan Sajodo Snack</p>
+</div></section>
+
+<section class="py-5 bg-cream"><div class="container py-3">
+
+  <!-- FORM INPUT DATA -->
+  <div class="card border-0 shadow-sm p-4 mb-5 reveal">
+    <h4 class="fd fw-bold mb-4">➕ Input Data Pesanan Baru</h4>
+    <form id="dataForm">
+      <div class="row g-3">
+        <div class="col-md-4"><label class="form-label fw-bold small">ID Pesanan</label><input type="text" class="form-control" id="f-id" placeholder="Auto-generate" readonly style="background:#f5f5f5"></div>
+        <div class="col-md-4"><label class="form-label fw-bold small">Nama Pelanggan *</label><input type="text" class="form-control" id="f-nama" placeholder="Nama lengkap" required></div>
+        <div class="col-md-4"><label class="form-label fw-bold small">No. Telepon *</label><input type="tel" class="form-control" id="f-tlp" placeholder="08xx-xxxx-xxxx" required></div>
+        <div class="col-md-6"><label class="form-label fw-bold small">Produk *</label>
+          <select class="form-select" id="f-menu" required onchange="autoPrice()">
+            <option value="">-- Pilih Produk --</option>
+            <optgroup label="🍗 Usus Crispy">
+              <option value="Usus Crispy Pedas 250gr:44500">Usus Pedas 250gr – Rp 44.500</option>
+              <option value="Usus Crispy Pedas 500gr:64700">Usus Pedas 500gr – Rp 64.700</option>
+              <option value="Usus Crispy Pedas 1kg:118000">Usus Pedas 1kg – Rp 118.000</option>
+              <option value="Usus Crispy Original 250gr:42500">Usus Ori 250gr – Rp 42.500</option>
+              <option value="Usus Crispy Original 500gr:72000">Usus Ori 500gr – Rp 72.000</option>
+              <option value="Usus Crispy Original 1kg:98500">Usus Ori 1kg – Rp 98.500</option>
+            </optgroup>
+            <optgroup label="🥩 Basreng">
+              <option value="Basreng Pedas 250gr:30500">Basreng Pedas 250gr – Rp 30.500</option>
+              <option value="Basreng Pedas 500gr:52000">Basreng Pedas 500gr – Rp 52.000</option>
+              <option value="Basreng Pedas 1kg:112000">Basreng Pedas 1kg – Rp 112.000</option>
+              <option value="Basreng Original 250gr:27500">Basreng Ori 250gr – Rp 27.500</option>
+              <option value="Basreng Original 500gr:48000">Basreng Ori 500gr – Rp 48.000</option>
+              <option value="Basreng Original 1kg:90000">Basreng Ori 1kg – Rp 90.000</option>
+            </optgroup>
+            <optgroup label="🌶️ Snack Lainnya">
+              <option value="Keju Aroma 10 stck:27500">Keju Aroma – Rp 27.500</option>
+              <option value="Keripik Kaca 100gr:25000">Keripik Kaca – Rp 25.000</option>
+              <option value="Otak-Otak Ikan:16000">Otak-Otak Ikan – Rp 16.000</option>
+              <option value="Seblak Instan:25500">Seblak Instan – Rp 25.500</option>
+              <option value="Cimol Keju 15 butir:25500">Cimol Keju – Rp 25.500</option>
+              <option value="Baso Aci Jumbo Ayam Suwir:25500">Baso Aci Jumbo – Rp 25.500</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="col-md-2"><label class="form-label fw-bold small">Qty *</label><input type="number" class="form-control" id="f-qty" min="1" value="1" required onchange="autoPrice()"></div>
+        <div class="col-md-4"><label class="form-label fw-bold small">Total Harga (Rp)</label><input type="number" class="form-control" id="f-total" placeholder="0" required></div>
+        <div class="col-md-4"><label class="form-label fw-bold small">Status</label>
+          <select class="form-select" id="f-status">
+            <option>Baru</option><option>Diproses</option><option>Selesai</option>
+          </select>
+        </div>
+        <div class="col-md-4"><label class="form-label fw-bold small">Pembayaran</label>
+          <select class="form-select" id="f-pay">
+            <option>COD</option><option>Transfer BCA</option><option>Transfer BRI</option>
+            <option>GoPay</option><option>OVO</option><option>QRIS</option>
+          </select>
+        </div>
+        <div class="col-md-4"><label class="form-label fw-bold small">Tanggal</label><input type="date" class="form-control" id="f-tgl" required></div>
+        <div class="col-12 d-flex gap-2 flex-wrap mt-2">
+          <button type="submit" class="btn btn-sajodo px-4">💾 Simpan Data</button>
+          <button type="button" class="btn btn-sajodo-o px-4" onclick="resetForm()">🔄 Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="row g-3 mb-4 reveal" id="statsRow">
+    <div class="col-6 col-md-3"><div class="card border-0 shadow-sm p-3 stat-card"><div class="stat-num" id="s-total">0</div><div class="text-muted small fw-semibold">Total Pesanan</div></div></div>
+    <div class="col-6 col-md-3"><div class="card border-0 shadow-sm p-3 stat-card"><div class="stat-num" id="s-baru">0</div><div class="text-muted small fw-semibold">Pesanan Baru</div></div></div>
+    <div class="col-6 col-md-3"><div class="card border-0 shadow-sm p-3 stat-card"><div class="stat-num" id="s-proses">0</div><div class="text-muted small fw-semibold">Diproses</div></div></div>
+    <div class="col-6 col-md-3"><div class="card border-0 shadow-sm p-3 stat-card"><div class="stat-num" id="s-rev" style="font-size:1.2rem">Rp 0</div><div class="text-muted small fw-semibold">Total Pendapatan</div></div></div>
+  </div>
+
+  <!-- TABLE CONTROLS -->
+  <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between mb-3 reveal">
+    <div class="search-wrap">
+      <i class="bi bi-search text-muted"></i>
+      <input type="text" id="searchInput" placeholder="Cari nama, produk, status..." oninput="filterTable()">
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+      <select class="form-select form-select-sm" id="statusFilter" onchange="filterTable()" style="width:auto;border-radius:50px;border:2px solid #ead5c8">
+        <option value="">Semua Status</option>
+        <option>Baru</option><option>Diproses</option><option>Selesai</option>
+      </select>
+      <button class="btn btn-sajodo btn-sajodo-sm" onclick="exportCSV()"><i class="bi bi-download me-1"></i>Export CSV</button>
+      <button class="btn btn-sajodo-o btn-sajodo-sm" onclick="clearAll()"><i class="bi bi-trash me-1"></i>Hapus Semua</button>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="tbl-wrapper reveal">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0" id="mainTable">
+        <thead class="tbl-head">
+          <tr>
+            <th>#</th><th>ID</th><th>Nama</th><th>Telepon</th>
+            <th>Produk</th><th>Qty</th><th>Pembayaran</th>
+            <th>Total</th><th>Status</th><th>Tanggal</th><th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="emptyState" class="text-center py-5" style="display:none">
+    <div style="font-size:4rem" class="mb-3">📭</div>
+    <h5 class="fd fw-bold mb-2">Belum Ada Data Pesanan</h5>
+    <p class="text-muted mb-3">Tambahkan data pesanan menggunakan form di atas</p>
+    <a href="order.html" class="btn btn-sajodo">+ Tambah via Form Pesan</a>
+  </div>
+
+  <div class="d-flex justify-content-center gap-2 mt-4" id="pagination"></div>
+
+</div></section>
+
+
+<footer class="footer pt-5 pb-0">
+  <div class="container">
+    <div class="row g-4 pb-4">
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <img src="images/logo.png" alt="Sajodo Snack Logo" style="width:36px;height:36px;border-radius:50%;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+      <span class="logo-icon" style="display:none">🌶️</span>
+          <span style="font-family:var(--fd);font-size:1.2rem;font-weight:900;color:#fff">SAJODO <span class="acc">SNACK</span></span>
+        </div>
+        <p style="font-size:.88rem">Jajanan khas lokal rasa mengglobal. Dibuat dengan cinta, disajikan dengan pedas.</p>
+        <div class="d-flex gap-3 mt-3 fs-5">
+          <a href="#" class="text-white-50"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-white-50"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-white-50"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="text-white-50"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6 class="text-white fw-bold mb-3">Navigasi</h6>
+        <ul class="list-unstyled" style="font-size:.87rem">
+          <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="mb-2"><a href="products.html" class="text-white-50 text-decoration-none">Products</a></li>
+          <li class="mb-2"><a href="about.html" class="text-white-50 text-decoration-none">Tentang Kami</a></li>
+          <li class="mb-2"><a href="order.html" class="text-white-50 text-decoration-none">Pesan</a></li>
+          <li class="mb-2"><a href="contact.html" class="text-white-50 text-decoration-none">Contact</a></li>
+          <li class="mb-2"><a href="promo.html" class="text-white-50 text-decoration-none">Promo</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-6">
+        <h6 class="text-white fw-bold mb-3">Produk</h6>
+        <ul class="list-unstyled" style="font-size:.87rem">
+          <li class="mb-2 text-white-50">Usus Crispy</li>
+          <li class="mb-2 text-white-50">Basreng</li>
+          <li class="mb-2 text-white-50">Keripik Kaca</li>
+          <li class="mb-2 text-white-50">Keju Aroma</li>
+          <li class="mb-2 text-white-50">Seblak Instan</li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h6 class="text-white fw-bold mb-3">Kontak</h6>
+        <div style="font-size:.87rem">
+          <p class="text-white-50 mb-2"><i class="bi bi-geo-alt me-2"></i>Jl. Snack Pedas No. 17, Bandung</p>
+          <p class="text-white-50 mb-2"><i class="bi bi-telephone me-2"></i>0812-3456-7890</p>
+          <p class="text-white-50 mb-2"><i class="bi bi-envelope me-2"></i>sajodosnack@gmail.com</p>
+          <p class="text-white-50 mb-2"><i class="bi bi-clock me-2"></i>08.00 – 21.00 WIB</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-top border-secondary py-3 text-center" style="font-size:.82rem;color:rgba(255,255,255,.4)">
+      © 2024 Sajodo Snack. All Rights Reserved. | Jajanan Khas Lokal Rasa Mengglobal 🌶️
+    </div>
+  </div>
+</footer>
+<div class="toast-notif" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  const n=document.querySelector('.navbar');
+  if(n) n.style.boxShadow=window.scrollY>40?'0 4px 24px rgba(192,57,43,.16)':'0 2px 16px rgba(192,57,43,.08)';
+});
+// Scroll reveal
+const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('animated');e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(22px)';
+  el.style.transition='opacity .5s ease,transform .5s ease';obs.observe(el);
+});
+function showToast(msg){
+  const t=document.getElementById('toast');if(!t)return;
+  t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
+}
+</script>
+
+<script>
+const SAMPLE = [
+  {id:'ORD001',nama:'Ayu Pratiwi',telepon:'0812-1111-2222',menu:'Usus Crispy Pedas 250gr',qty:2,pembayaran:'GoPay',total:89000,status:'Selesai',tanggal:'01/04/2024'},
+  {id:'ORD002',nama:'Rizki Maulana',telepon:'0813-3333-4444',menu:'Basreng Pedas 500gr',qty:3,pembayaran:'COD',total:156000,status:'Selesai',tanggal:'02/04/2024'},
+  {id:'ORD003',nama:'Siti Nurhaliza',telepon:'0857-5555-6666',menu:'Keripik Kaca 100gr',qty:1,pembayaran:'Transfer BCA',total:25000,status:'Diproses',tanggal:'03/04/2024'},
+  {id:'ORD004',nama:'Budi Santoso',telepon:'0821-7777-8888',menu:'Keju Aroma 10 stck',qty:5,pembayaran:'OVO',total:137500,status:'Selesai',tanggal:'04/04/2024'},
+  {id:'ORD005',nama:'Dewi Rahayu',telepon:'0831-9999-0000',menu:'Baso Aci Jumbo Ayam Suwir',qty:2,pembayaran:'QRIS',total:51000,status:'Diproses',tanggal:'05/04/2024'},
+  {id:'ORD006',nama:'Hendra Wijaya',telepon:'0856-1234-5678',menu:'Seblak Instan',qty:4,pembayaran:'COD',total:102000,status:'Baru',tanggal:'06/04/2024'},
+  {id:'ORD007',nama:'Maya Sari',telepon:'0812-8765-4321',menu:'Cimol Keju 15 butir',qty:2,pembayaran:'GoPay',total:51000,status:'Baru',tanggal:'07/04/2024'},
+  {id:'ORD008',nama:'Fandi Ahmad',telepon:'0851-2222-3333',menu:'Usus Crispy Original 1kg',qty:1,pembayaran:'Transfer BRI',total:98500,status:'Selesai',tanggal:'08/04/2024'},
+];
+let allOrders=[], filtered=[], editIdx=-1, page=1; const PER=8;
+
+function load(){
+  const stored=JSON.parse(localStorage.getItem('sajodoOrders')||'[]');
+  allOrders=[...SAMPLE,...stored];filtered=[...allOrders];updateStats();render();genId();
+  // Set today date
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('f-tgl').value=today;
+}
+function genId(){
+  const next=allOrders.length+1;document.getElementById('f-id').value='ORD'+String(next).padStart(3,'0');
+}
+function autoPrice(){
+  const v=document.getElementById('f-menu').value,q=parseInt(document.getElementById('f-qty').value)||1;
+  if(v){document.getElementById('f-total').value=parseInt(v.split(':')[1])*q;}
+}
+function updateStats(){
+  document.getElementById('s-total').textContent=allOrders.length;
+  document.getElementById('s-baru').textContent=allOrders.filter(o=>o.status==='Baru').length;
+  document.getElementById('s-proses').textContent=allOrders.filter(o=>o.status==='Diproses').length;
+  const rev=allOrders.reduce((s,o)=>s+o.total,0);
+  document.getElementById('s-rev').textContent='Rp '+rev.toLocaleString('id-ID');
+}
+function render(){
+  const tb=document.getElementById('tableBody');
+  const pg=filtered.slice((page-1)*PER,page*PER);
+  if(filtered.length===0){
+    document.querySelector('.tbl-wrapper').style.display='none';
+    document.getElementById('emptyState').style.display='block';
+  }else{
+    document.querySelector('.tbl-wrapper').style.display='block';
+    document.getElementById('emptyState').style.display='none';
+  }
+  tb.innerHTML=pg.map((o,i)=>`<tr>
+    <td>${(page-1)*PER+i+1}</td>
+    <td><strong class="text-red">${o.id}</strong></td>
+    <td><strong>${o.nama}</strong></td>
+    <td class="text-muted small">${o.telepon}</td>
+    <td>${o.menu}</td>
+    <td class="fw-bold">${o.qty}x</td>
+    <td class="small">${o.pembayaran}</td>
+    <td class="fw-bold text-red">Rp ${o.total.toLocaleString('id-ID')}</td>
+    <td><span class="status-${o.status.toLowerCase()}">${o.status}</span></td>
+    <td class="small text-muted">${o.tanggal}</td>
+    <td>
+      <select class="form-select form-select-sm" style="width:auto;font-size:.75rem;border-radius:8px" onchange="changeStatus(${allOrders.indexOf(o)},this.value)">
+        <option ${o.status==='Baru'?'selected':''}>Baru</option>
+        <option ${o.status==='Diproses'?'selected':''}>Diproses</option>
+        <option ${o.status==='Selesai'?'selected':''}>Selesai</option>
+      </select>
+    </td>
+  </tr>`).join('');
+  renderPag();
+}
+function renderPag(){
+  const total=Math.ceil(filtered.length/PER),pg=document.getElementById('pagination');
+  if(total<=1){pg.innerHTML='';return;}
+  let h='';
+  for(let i=1;i<=total;i++)h+=`<button class="btn btn-sm ${i===page?'btn-sajodo':'btn-sajodo-o'} btn-sajodo-sm" onclick="goPage(${i})">${i}</button>`;
+  pg.innerHTML=h;
+}
+function goPage(p){page=p;render();}
+function filterTable(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  const s=document.getElementById('statusFilter').value;
+  filtered=allOrders.filter(o=>(!q||o.nama.toLowerCase().includes(q)||o.menu.toLowerCase().includes(q)||o.id.toLowerCase().includes(q)||o.status.toLowerCase().includes(q))&&(!s||o.status===s));
+  page=1;render();
+}
+function changeStatus(idx,val){
+  allOrders[idx].status=val;
+  const stored=JSON.parse(localStorage.getItem('sajodoOrders')||'[]');
+  const si=idx-SAMPLE.length;
+  if(si>=0&&stored[si]){stored[si].status=val;localStorage.setItem('sajodoOrders',JSON.stringify(stored));}
+  updateStats();filterTable();showToast('✅ Status diperbarui!');
+}
+function exportCSV(){
+  const heads=['ID','Nama','Telepon','Produk','Qty','Pembayaran','Total','Status','Tanggal'];
+  const rows=allOrders.map(o=>[o.id,o.nama,o.telepon,o.menu,o.qty,o.pembayaran,o.total,o.status,o.tanggal]);
+  const csv=[heads,...rows].map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='data-pesanan-sajodo.csv';a.click();showToast('⬇️ Data berhasil diexport!');
+}
+function clearAll(){
+  if(confirm('Hapus semua pesanan dari localStorage?')){
+    localStorage.removeItem('sajodoOrders');load();showToast('🗑️ Data dihapus!');
+  }
+}
+function resetForm(){document.getElementById('dataForm').reset();genId();const today=new Date().toISOString().split('T')[0];document.getElementById('f-tgl').value=today;}
+document.getElementById('dataForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const v=document.getElementById('f-menu').value;if(!v){alert('Pilih produk!');return;}
+  const newOrder={
+    id:document.getElementById('f-id').value,
+    nama:document.getElementById('f-nama').value,
+    telepon:document.getElementById('f-tlp').value,
+    menu:v.split(':')[0],qty:parseInt(document.getElementById('f-qty').value),
+    pembayaran:document.getElementById('f-pay').value,
+    total:parseInt(document.getElementById('f-total').value)||0,
+    status:document.getElementById('f-status').value,
+    tanggal:new Date(document.getElementById('f-tgl').value).toLocaleDateString('id-ID')
+  };
+  const stored=JSON.parse(localStorage.getItem('sajodoOrders')||'[]');
+  stored.push(newOrder);localStorage.setItem('sajodoOrders',JSON.stringify(stored));
+  showToast('✅ Data pesanan berhasil disimpan!');resetForm();load();
+});
+load();
+</script>
+</body>
+</html>
